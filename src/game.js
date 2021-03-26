@@ -64,7 +64,7 @@ function generateRandomEquation() {
 
     for (i = 0; i < len; i++) {
         if (i % 2 == 0) {
-            let num = getRandomIntInclusive(1, 100);
+            let num = getRandomIntInclusive(1, 125);
             equation += num.toString();
         }
         else {

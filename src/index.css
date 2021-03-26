@@ -4,3 +4,8 @@ body {
   max-width: 38rem;
   padding: 2rem;
 }
+
+.stopwatch {
+  display: flex;
+  align-items: center;
+}

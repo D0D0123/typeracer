@@ -3,6 +3,9 @@ var userInputForm = document.getElementById("user-input-form");
 var userInputBox = document.getElementById("user-input-box");
 var displayEquation = document.getElementById("equation");
 var displayPoints = document.getElementById("points");
+var displayTimer = document.getElementById("time");
+var startButton = document.getElementById("start");
+var stopButton = document.getElementById("stop");
 
 function main() {
     let user_string = "";
@@ -31,6 +34,15 @@ function main() {
 
     userInputBox.addEventListener("input", function(event) {
         userInputBox.className = "form-control mx-auto mt-3 shadow-none"
+    });
+
+    startButton.addEventListener("click", () => {
+        startTimer();
+        startButton.disabled = true;
+    });
+    stopButton.addEventListener("click", () => {
+        stopTimer();
+        startButton.disabled = false;
     });
 }
 
@@ -64,6 +76,44 @@ function generateRandomEquation() {
     console.log(equation);
 
     return equation;
+}
+
+let timerInterval;
+
+function startTimer() {
+    let startTime;
+    let elapsedTime = 0;
+
+    startTime = Date.now() - elapsedTime;
+    timerInterval = setInterval(function printTime() {
+      elapsedTime = Date.now() - startTime;
+      displayTimer.innerHTML = formatTime(elapsedTime);
+    }, 10);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+function formatTime(time) {
+    let diffInHrs = time / 3600000;
+    let hh = Math.floor(diffInHrs);
+  
+    let diffInMin = (diffInHrs - hh) * 60;
+    let mm = Math.floor(diffInMin);
+  
+    let diffInSec = (diffInMin - mm) * 60;
+    let ss = Math.floor(diffInSec);
+  
+    let diffInMs = (diffInSec - ss) * 100;
+    let ms = Math.floor(diffInMs);
+  
+    let formattedMM = mm.toString().padStart(2, "0");
+    let formattedSS = ss.toString().padStart(2, "0");
+    let formattedMS = ms.toString().padStart(2, "0");
+  
+    // return `${formattedMM}:${formattedSS}:${formattedMS}`;
+    return `${formattedMM}:${formattedSS}`;
 }
 
 // generateRandomEquation();

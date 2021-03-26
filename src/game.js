@@ -55,7 +55,7 @@ function getRandomIntInclusive(min, max) {
 
 function generateRandomEquation() {
     let len = getRandomIntInclusive(4, 6);
-    let operators = ['+', '-', '/', '*', '^'];
+    let operators = ['+', '-', '/', '*'];
     let equation = "";
 
     if (len % 2 == 0) {
